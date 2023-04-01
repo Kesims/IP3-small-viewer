@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->foreign('room_id')->references('id')->on('room')->cascadeOnDelete();
+            $table->foreign('room_id')->references('id')->on('rooms')->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unique(['room_id', 'user_id']);
         });
