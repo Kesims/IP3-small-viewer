@@ -19,13 +19,12 @@
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <label for="administrator">Administrátor</label>
-        <input type="checkbox" name="administrator" id="administrator" class="form-control"
-               @if(old('administrator'))
-                   checked="checked"
-               @endif
-        ><br>
+        <select name="administrator" id="administrator">
+            <option value="1" @if(old('administrator') === "1")selected="selected"@endif>Ano</option>
+            <option value="0" @if(old('administrator') === "0")selected="selected"@endif>Ne</option>
+        </select><br>
         @error('administrator')
-            <div class="alert alert-danger">{{ $message }}</div>
+        <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <label for="name">Jméno</label>
         <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}"><br>
