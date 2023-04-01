@@ -12,6 +12,11 @@ Database viewer based on Laravel. No CSS used, speedrunned in two afternoons wit
 5. Fully deploy.
 6. Enjoy.
 
+Optional: You can host the database on docker with `docker-compose up -d` and then run `php artisan migrate --seed` to seed the database.
+
 ## Usage
 1. Login with `admin` and `password` to see the admin mode.
 2. Login with `user` and `password` to see the user mode.
+
+## Live demo
+[https://smallviewer.jetbrainer.com/](https://smallviewer.jetbrainer.com/)
