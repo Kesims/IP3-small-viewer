@@ -1,0 +1,59 @@
+version: '3'
+services:
+
+  # Klasicka MySQL databaze
+  databaze:
+    image: mariadb:10.9
+    container_name: small_db
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: kaktusdelta
+      MYSQL_USER: delta
+      MYSQL_PASSWORD: kaktusdelta
+      MYSQL_DATABASE: delta
+    restart: unless-stopped
+    ports:
+      - 8001:3306
+
+  # Pro snazsi spravu databaze
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: small_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 8002:80
+    environment:
+      - PMA_HOST=databaze
+
+#  adminer:
+#    image: adminer
+#    container_name: delta_adminer
+#    restart: unless-stopped
+#    ports:
+#      - 6081:8080
+#
+#  # Jednotlive Apache servery s nejcasteji pouzivanymi verzemi PHP a Xdebugu
+#  webserver-php5.6:
+#    build: ./5.6
+#    container_name: delta_webserver_php5.6
+#    restart: unless-stopped
+#    volumes:
+#      - ./../:/var/www/html
+#    ports:
+#      - 8056:80
+#  webserver-php7.4:
+#    build: ./7.4
+#    container_name: delta_webserver_php7.4
+#    restart: unless-stopped
+#    volumes:
+#      - ./../:/var/www/html
+#    ports:
+#      - 8074:80
+#  webserver-php8.1:
+#    build: ./8.1
+#    container_name: delta_webserver_php8.1-v2
+#    restart: unless-stopped
+#    volumes:
+#      - ./../:/var/www/html
+#    ports:
+#      - 8081:80
