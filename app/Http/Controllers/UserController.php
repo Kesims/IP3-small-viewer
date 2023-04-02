@@ -90,12 +90,16 @@ class UserController extends Controller
     }
 
     public function changePassword($id) {
+        if($id !== auth()->user()->id)
+            return redirect()->route('user.index')->with('message', 'Nemáte oprávnění k změně hesla jiného uživatele');
         return view('user.changePassword', [
             "user" => User::query()->findOrFail($id),
         ]);
     }
 
     public function updatePassword(Request $request, $id) {
+        if($id !== auth()->user()->id)
+            return redirect()->route('user.index')->with('message', 'Nemáte oprávnění k změně hesla jiného uživatele');
         $formFields = $request->validate([
             'password' => ['required', 'confirmed', 'min:8'],
         ]);
